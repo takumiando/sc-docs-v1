@@ -81,7 +81,7 @@ root filesystem are therefore lost when the system is rebooted unless they
 are saved to separately mounted persistent storage.
 
 Ramroot is the default because the onboard eMMC is less tolerant of radiation
-than the memories intended for high-reliability use. Radiation-induced errors
+than memory devices intended for high-reliability use. Radiation-induced errors
 can corrupt data stored in the eMMC or make the device temporarily unavailable.
 Loading the root filesystem into RAM reduces Linux's dependency on the eMMC
 during operation and allows the system to keep running if access to the eMMC is
