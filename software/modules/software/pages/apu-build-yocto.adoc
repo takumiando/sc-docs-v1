@@ -89,6 +89,34 @@ disrupted. This does not protect the boot image or other persistent data kept on
 the eMMC, so mission-critical persistent data requires appropriate protection
 and redundancy.
 
+Select the kas configuration file that matches your SC-OBC Module V1 machine and
+board revision.
+
+[cols="2,3,7,8",options="header"]
+|===
+| Grade | Board revision | kas configuration file | Machine configuration file
+
+| Space Grade
+| Rev.B
+| https://github.com/spacecubics/meta-scobc/blob/main/kas/scobc-v1.yml[`kas/scobc-v1.yml`]
+| https://github.com/spacecubics/meta-scobc/blob/main/conf/machine/versal-scobc-v1-ve2302i-revb-sdt-full.conf[`versal-scobc-v1-ve2302i-revb-sdt-full`]
+
+| Developer Grade
+| Rev.B
+| https://github.com/spacecubics/meta-scobc/blob/main/kas/scobc-v1-devgrade.yml[`kas/scobc-v1-devgrade.yml`]
+| https://github.com/spacecubics/meta-scobc/blob/main/conf/machine/versal-scobc-v1-ve2302e-revb-sdt-full.conf[`versal-scobc-v1-ve2302e-revb-sdt-full`]
+
+| Space Grade
+| Rev.A
+| https://github.com/spacecubics/meta-scobc/blob/main/kas/scobc-v1-reva.yml[`kas/scobc-v1-reva.yml`]
+| https://github.com/spacecubics/meta-scobc/blob/main/conf/machine/versal-scobc-v1-ve2302i-reva-sdt-full.conf[`versal-scobc-v1-ve2302i-reva-sdt-full`]
+
+| Developer Grade
+| Rev.A
+| https://github.com/spacecubics/meta-scobc/blob/main/kas/scobc-v1-devgrade-reva.yml[`kas/scobc-v1-devgrade-reva.yml`]
+| https://github.com/spacecubics/meta-scobc/blob/main/conf/machine/versal-scobc-v1-ve2302e-reva-sdt-full.conf[`versal-scobc-v1-ve2302e-reva-sdt-full`]
+|===
+
 === For Space Grade
 
 [source,  bash]
@@ -96,17 +124,17 @@ and redundancy.
 $ kas build kas/scobc-v1.yml
 ----
 
-`build/tmp/deploy/images/versal-scobc-v1-ve2302i-sdt-full/` will contain
+`build/tmp/deploy/images/versal-scobc-v1-ve2302i-revb-sdt-full/` will contain
 the generated image files.
 
 [source,  bash]
 ----
-$ ls -1F build/tmp/deploy/images/versal-scobc-v1-ve2302i-sdt-full/*.wic
-build/tmp/deploy/images/versal-scobc-v1-ve2302i-sdt-full/sc-image-ramroot-versal-scobc-v1-ve2302i-sdt-full-yyyyMMddHHmmss.wic
-build/tmp/deploy/images/versal-scobc-v1-ve2302i-sdt-full/sc-image-ramroot-versal-scobc-v1-ve2302i-sdt-full.wic@
+$ ls -1F build/tmp/deploy/images/versal-scobc-v1-ve2302i-revb-sdt-full/*.wic
+build/tmp/deploy/images/versal-scobc-v1-ve2302i-revb-sdt-full/sc-image-ramroot-versal-scobc-v1-ve2302i-revb-sdt-full-yyyyMMddHHmmss.wic
+build/tmp/deploy/images/versal-scobc-v1-ve2302i-revb-sdt-full/sc-image-ramroot-versal-scobc-v1-ve2302i-revb-sdt-full.wic@
 ----
 
-NOTE: `sc-image-ramroot-versal-scobc-v1-ve2302i-sdt-full.wic` is a symlink to
+NOTE: `sc-image-ramroot-versal-scobc-v1-ve2302i-revb-sdt-full.wic` is a symlink to
 the latest build.
 
 === For Developer Grade
@@ -116,17 +144,17 @@ the latest build.
 $ kas build kas/scobc-v1-devgrade.yml
 ----
 
-`build/tmp/deploy/images/versal-scobc-v1-ve2302e-sdt-full/` will contain
+`build/tmp/deploy/images/versal-scobc-v1-ve2302e-revb-sdt-full/` will contain
 the generated image files.
 
 [source,  bash]
 ----
-$ ls -1F build/tmp/deploy/images/versal-scobc-v1-ve2302e-sdt-full/*.wic
-build/tmp/deploy/images/versal-scobc-v1-ve2302e-sdt-full/sc-image-ramroot-versal-scobc-v1-ve2302e-sdt-full-yyyyMMddHHmmss.wic
-build/tmp/deploy/images/versal-scobc-v1-ve2302e-sdt-full/sc-image-ramroot-versal-scobc-v1-ve2302e-sdt-full.wic@
+$ ls -1F build/tmp/deploy/images/versal-scobc-v1-ve2302e-revb-sdt-full/*.wic
+build/tmp/deploy/images/versal-scobc-v1-ve2302e-revb-sdt-full/sc-image-ramroot-versal-scobc-v1-ve2302e-revb-sdt-full-yyyyMMddHHmmss.wic
+build/tmp/deploy/images/versal-scobc-v1-ve2302e-revb-sdt-full/sc-image-ramroot-versal-scobc-v1-ve2302e-revb-sdt-full.wic@
 ----
 
-NOTE: `sc-image-ramroot-versal-scobc-v1-ve2302e-sdt-full.wic` is a symlink to
+NOTE: `sc-image-ramroot-versal-scobc-v1-ve2302e-revb-sdt-full.wic` is a symlink to
 the latest build.
 
 == Build an Image that uses the SD Card Root Filesystem
@@ -148,23 +176,23 @@ $ kas build kas/scobc-v1-devgrade.yml:kas/targets/sc-image-minimal.yml
 ----
 
 The Space Grade image is generated in
-`build/tmp/deploy/images/versal-scobc-v1-ve2302i-sdt-full/`.
+`build/tmp/deploy/images/versal-scobc-v1-ve2302i-revb-sdt-full/`.
 
 [source, bash]
 ----
-$ ls -1F build/tmp/deploy/images/versal-scobc-v1-ve2302i-sdt-full/sc-image-minimal-*.wic
-build/tmp/deploy/images/versal-scobc-v1-ve2302i-sdt-full/sc-image-minimal-versal-scobc-v1-ve2302i-sdt-full-yyyyMMddHHmmss.wic
-build/tmp/deploy/images/versal-scobc-v1-ve2302i-sdt-full/sc-image-minimal-versal-scobc-v1-ve2302i-sdt-full.wic@
+$ ls -1F build/tmp/deploy/images/versal-scobc-v1-ve2302i-revb-sdt-full/sc-image-minimal-*.wic
+build/tmp/deploy/images/versal-scobc-v1-ve2302i-revb-sdt-full/sc-image-minimal-versal-scobc-v1-ve2302i-revb-sdt-full-yyyyMMddHHmmss.wic
+build/tmp/deploy/images/versal-scobc-v1-ve2302i-revb-sdt-full/sc-image-minimal-versal-scobc-v1-ve2302i-revb-sdt-full.wic@
 ----
 
 The Developer Grade image is generated in
-`build/tmp/deploy/images/versal-scobc-v1-ve2302e-sdt-full/`.
+`build/tmp/deploy/images/versal-scobc-v1-ve2302e-revb-sdt-full/`.
 
 [source, bash]
 ----
-$ ls -1F build/tmp/deploy/images/versal-scobc-v1-ve2302e-sdt-full/sc-image-minimal-*.wic
-build/tmp/deploy/images/versal-scobc-v1-ve2302e-sdt-full/sc-image-minimal-versal-scobc-v1-ve2302e-sdt-full-yyyyMMddHHmmss.wic
-build/tmp/deploy/images/versal-scobc-v1-ve2302e-sdt-full/sc-image-minimal-versal-scobc-v1-ve2302e-sdt-full.wic@
+$ ls -1F build/tmp/deploy/images/versal-scobc-v1-ve2302e-revb-sdt-full/sc-image-minimal-*.wic
+build/tmp/deploy/images/versal-scobc-v1-ve2302e-revb-sdt-full/sc-image-minimal-versal-scobc-v1-ve2302e-revb-sdt-full-yyyyMMddHHmmss.wic
+build/tmp/deploy/images/versal-scobc-v1-ve2302e-revb-sdt-full/sc-image-minimal-versal-scobc-v1-ve2302e-revb-sdt-full.wic@
 ----
 
 The `.wic` file without a timestamp is a symlink to the latest build.

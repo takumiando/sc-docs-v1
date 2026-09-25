@@ -21,7 +21,7 @@ the Linux kernel, U-Boot, or applications outside the full Yocto build.
 [source,bash]
 ----
 $ uv run kas build --force-checkout kas/scobc-v1.yml -c populate_sdk
-$ ./build/tmp/deploy/sdk/petalinux-glibc-x86_64-sc-image-minimal-cortexa72-cortexa53-versal-scobc-v1-ve2302i-sdt-full-toolchain-2025.2.sh
+$ ./build/tmp/deploy/sdk/petalinux-glibc-x86_64-sc-image-minimal-cortexa72-cortexa53-versal-scobc-v1-ve2302i-revb-sdt-full-toolchain-2025.2.sh
 $ source /opt/petalinux/2025.2/environment-setup-cortexa72-cortexa53-amd-linux
 ----
 
@@ -68,7 +68,7 @@ Create a patch from the Yocto-patched kernel source tree.
 
 [source,bash]
 ----
-$ cd /path/to/meta-scobc/build/tmp/work-shared/versal-scobc-v1-ve2002e-sdt-full/kernel-source
+$ cd /path/to/meta-scobc/build/tmp/work-shared/versal-scobc-v1-ve2302i-revb-sdt-full/kernel-source
 $ git diff --binary "$LINUX_XLNX_BASE_REV" -- > /tmp/linux-xlnx-yocto.patch
 ----
 
@@ -88,7 +88,7 @@ Prepare an output directory and copy the Yocto-generated kernel configuration.
 ----
 $ export OUT=<path-to-out>
 $ mkdir -p "$OUT"
-$ cp /path/to/meta-scobc/build/tmp/work/versal_scobc_v1_ve2302i_sdt_full-amd-linux/linux-xlnx/6.12.40+git+v2025.2/defconfig $OUT/.config
+$ cp /path/to/meta-scobc/build/tmp/work/versal_scobc_v1_ve2302i_revb_sdt_full-amd-linux/linux-xlnx/6.12.40+git+v2025.2/defconfig $OUT/.config
 ----
 
 To change the kernel release string, set `LOCALVERSION` in `.config` before

@@ -3,7 +3,7 @@
 == Flashing the Image to an SD Card
 
 ----
-$ sudo dd if=build/tmp/deploy/images/versal-scobc-v1-ve2302i-sdt-full/sc-image-ramroot-versal-scobc-v1-ve2302i-sdt-full.wic \
+$ sudo dd if=build/tmp/deploy/images/versal-scobc-v1-ve2302i-revb-sdt-full/sc-image-ramroot-versal-scobc-v1-ve2302i-revb-sdt-full.wic \
           of=/dev/sdX \
           bs=4M \
           status=progress \
@@ -158,9 +158,9 @@ The PetaLinux source code and images provided/generated are for demonstration pu
 Please refer to https://xilinx-wiki.atlassian.net/wiki/spaces/A/pages/2741928025/Moving+from+PetaLinux+to+Production+Deployment
 for more details.
 ********************************************************************************************
-PetaLinux 2025.2+snapshot-a59a0c815a0ffc2747ab4289284f2c3aee3bc7fd versal-scobc-v1-ve2302i-sdt-full ttyAMA0
+PetaLinux 2025.2+snapshot-a59a0c815a0ffc2747ab4289284f2c3aee3bc7fd versal-scobc-v1-ve2302i-revb-sdt-full ttyAMA0
 
-versal-scobc-v1-ve2302i-sdt-full login:
+versal-scobc-v1-ve2302i-revb-sdt-full login:
 ----
 
 The default username is `petalinux`, and you need to set the password on the first login.

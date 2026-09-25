@@ -66,7 +66,7 @@ the already-running RPU firmware:
 
 [source,console]
 ----
-versal-scobc-v1-ve2302i-sdt-full:~# echo start > /sys/class/remoteproc/remoteproc0/state
+versal-scobc-v1-ve2302i-revb-sdt-full:~# echo start > /sys/class/remoteproc/remoteproc0/state
 [  219.445131] remoteproc remoteproc0: attaching to ffe00000.r5f
 [  219.451366] rproc-virtio rproc-virtio.2.auto: assigned reserved memory node vdev0buffer@9868000
 [  219.460349] virtio_rpmsg_bus virtio0: rpmsg host is online
@@ -81,7 +81,7 @@ Connect to the RPMsg TTY device with `microcom`:
 
 [source,console]
 ----
-versal-scobc-v1-ve2302i-sdt-full:~# microcom /dev/ttyRPMSG0
+versal-scobc-v1-ve2302i-revb-sdt-full:~# microcom /dev/ttyRPMSG0
 
 ipc:~$ kernel
 kernel - Kernel commands

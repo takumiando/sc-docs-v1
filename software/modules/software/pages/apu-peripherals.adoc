@@ -22,9 +22,9 @@ Then, build the image with the override file.
 ----
 $ kas build kas/scobc-v1.yml:override.local.yml
 ...
-$ ls -F1 build/tmp/deploy/images/versal-scobc-v1-ve2302i-sdt-full/*.wic
-build/tmp/deploy/images/versal-scobc-v1-ve2302i-sdt-full/sc-image-ramroot-versal-scobc-v1-ve2302i-sdt-full-yyyyMMddHHmmss.wic
-build/tmp/deploy/images/versal-scobc-v1-ve2302i-sdt-full/sc-image-ramroot-versal-scobc-v1-ve2302i-sdt-full.wic@
+$ ls -F1 build/tmp/deploy/images/versal-scobc-v1-ve2302i-revb-sdt-full/*.wic
+build/tmp/deploy/images/versal-scobc-v1-ve2302i-revb-sdt-full/sc-image-ramroot-versal-scobc-v1-ve2302i-revb-sdt-full-yyyyMMddHHmmss.wic
+build/tmp/deploy/images/versal-scobc-v1-ve2302i-revb-sdt-full/sc-image-ramroot-versal-scobc-v1-ve2302i-revb-sdt-full.wic@
 ----
 
 == Ethernet
