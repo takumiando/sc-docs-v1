@@ -139,21 +139,58 @@ device file:
 ----
 
 
-== SPI NOR Flash
+== Boot memory / High reliability memory
 
-Under Linux, SPI NOR Flash Memory is a MTD device. If Linux detected
-the device you can see the device like this:
+Under Linux, the boot memory and high reliability memory are MTD devices.
+If Linux detects the devices, they are displayed as follows:
 
 ----
-# ls /dev/mtd0 /dev/mtd0ro /dev/mtdblock0
+# ls -1 /dev/mtd*
 /dev/mtd0
 /dev/mtd0ro
+/dev/mtd1
+/dev/mtd1ro
 /dev/mtdblock0
+/dev/mtdblock1
+
+/dev/mtd:
+by-name
 ----
 
-`/dev/mtd0` is a char device. Thus, you can read from and write to it.
-`/dev/mtdblock0` is a block device.  Thus, you can format it and write
-to it. Both points to the same device.
+[cols="1,1,1,3,1", options="header"]
+|===
+| Memory | Board revision | Device type | Device name | Erase before overwrite
+
+| Boot memory
+| Rev.B
+| MRAM
+| `/dev/mtd0`, `/dev/mtd0ro`, `/dev/mtdblock0`
+| No
+
+| High reliability memory
+| Rev.B
+| MRAM
+| `/dev/mtd1`, `/dev/mtd1ro`, `/dev/mtdblock1`
+| No
+
+| Boot memory
+| Rev.A
+| NOR flash
+| `/dev/mtd0`, `/dev/mtd0ro`, `/dev/mtdblock0`
+| Yes
+
+| High reliability memory
+| Rev.A
+| FRAM
+| `/dev/mtd1`, `/dev/mtd1ro`, `/dev/mtdblock1`
+| No
+|===
+
+`/dev/mtd0` and `/dev/mtd1` are character devices, and `/dev/mtdblock0` and
+`/dev/mtdblock1` are block devices. Each pair points to the same device. The
+`ro` devices are read-only.
+The character devices are used for reading and writing data, while the block
+devices are used for formatting and writing data.
 
 See http://www.linux-mtd.infradead.org/faq/general.html#L_mtd_what for
 more info.
@@ -161,11 +198,25 @@ more info.
 === Write and read data
 
 ----
-# echo "SPI NOR Flash 1" > /dev/mtd0
-# hexdump -C /dev/mtd0
+# echo "Boot memory" > /dev/mtdblock0
+# hexdump -C -n 32 /dev/mtdblock0
+00000000  42 6f 6f 74 20 6d 65 6d  6f 72 79 0a ff ff ff ff  |Boot memory.....|
+00000010  ff ff ff ff ff ff ff ff  ff ff ff ff ff ff ff ff  |................|
+00000020
+# echo "High reliability memory" > /dev/mtdblock1
+# hexdump -C -n 32 /dev/mtdblock1
+00000000  48 69 67 68 20 72 65 6c  69 61 62 69 6c 69 74 79  |High reliability|
+00000010  20 6d 65 6d 6f 72 79 0a  ff ff ff ff ff ff ff ff  | memory.........|
+00000020
 ----
 
+The `ff` bytes show the unwritten part of the memory in this example.
+
 === Erase all sectors
+
+Only the Rev.A boot memory uses NOR flash. It must be erased before changing a
+bit from `0` to `1`. Erase all sectors before fully overwriting the memory. The
+following command erases all sectors of `/dev/mtd0`.
 
 ----
 # flash_erase /dev/mtd0 0 0
